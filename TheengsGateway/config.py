@@ -48,6 +48,8 @@ DEFAULT_CONFIG = {
     "identities": {},
     "tracker_timeout": 120,
     "ble": 1,
+    "whitelist": [],
+    "blacklist": [],
 }
 
 
@@ -246,6 +248,18 @@ def parse_args() -> argparse.Namespace:
         "--enable_websocket",
         type=int,
         help="Enable (1) or disable (0) WebSocket (default: 0)",
+    )
+    parser.add_argument(
+        "-wl",
+        "--whitelist",
+        nargs="+",
+        help="Addresses of Bluetooth devices to allow; all other devices are ignored",
+    )
+    parser.add_argument(
+        "-bl",
+        "--blacklist",
+        nargs="+",
+        help="Addresses of Bluetooth devices to ignore; all other devices are allowed",
     )
     return parser.parse_args()
 
