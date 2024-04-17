@@ -153,7 +153,7 @@ class Gateway:
                 self.subscribe(self.configuration["subscribe_topic"])
             else:
                 logger.error(
-                    "Failed to connect to MQTT broker %s:%d reason code: %d",
+                    "Failed to connect to MQTT broker %s:%d reason code: %s",
                     self.configuration["host"],
                     self.configuration["port"],
                     reason_code,
@@ -174,7 +174,7 @@ class Gateway:
                 logger.info("Disconnected from MQTT broker")
             else:
                 logger.error(
-                    "Disconnected from MQTT broker with reason code = %d", reason_code
+                    "Disconnected from MQTT broker with reason code = %s", reason_code
                 )
 
         if self.configuration["enable_websocket"]:
@@ -189,6 +189,8 @@ class Gateway:
                 cert_reqs=ssl.CERT_REQUIRED,
                 tls_version=ssl.PROTOCOL_TLS,
             )
+            if self.configuration["tls_insecure"]:
+                self.client.tls_insecure_set(value=True)
 
         self.client.username_pw_set(
             self.configuration["user"],
