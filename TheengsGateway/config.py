@@ -79,6 +79,12 @@ def parse_args() -> argparse.Namespace:
         help="Device addresses and their bindkeys: ADDR1 KEY1 ADDR2 KEY2",
     )
     parser.add_argument(
+        "-bl",
+        "--blacklist",
+        nargs="+",
+        help="Addresses of Bluetooth devices to ignore, all other devices are allowed",
+    )
+    parser.add_argument(
         "-c",
         "--config",
         type=str,
@@ -251,22 +257,16 @@ def parse_args() -> argparse.Namespace:
         help="MQTT username",
     )
     parser.add_argument(
+        "-wl",
+        "--whitelist",
+        nargs="+",
+        help="Addresses of Bluetooth devices to allow, all other devices are ignored",
+    )
+    parser.add_argument(
         "-ws",
         "--enable_websocket",
         type=int,
         help="Enable (1) or disable (0) WebSocket (default: 0)",
-    )
-    parser.add_argument(
-        "-wl",
-        "--whitelist",
-        nargs="+",
-        help="Addresses of Bluetooth devices to allow; all other devices are ignored",
-    )
-    parser.add_argument(
-        "-bl",
-        "--blacklist",
-        nargs="+",
-        help="Addresses of Bluetooth devices to ignore; all other devices are allowed",
     )
     return parser.parse_args()
 

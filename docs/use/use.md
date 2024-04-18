@@ -93,6 +93,7 @@ Note that in the latter case, there's guarantee that the manufacturer name is co
 ```shell
 C:\Users\1technophile>python -m TheengsGateway -h
 usage: TheengsGateway [-h] [-a ADAPTER] [-b BLE] [-bk ADDRESS [BINDKEY ...]]
+                      [-bl ADDRESS [ADDRESS ...]]
                       [-c CONFIG] [-D DISCOVERY]
                       [-Df DISCOVERY_FILTER [DISCOVERY_FILTER ...]]
                       [-Dh HASS_DISCOVERY] [-Dn DISCOVERY_DEVICE_NAME]
@@ -104,6 +105,7 @@ usage: TheengsGateway [-h] [-a ADAPTER] [-b BLE] [-bk ADDRESS [BINDKEY ...]]
                       [-s {active,passive}] [-sd BLE_SCAN_TIME] [-st SUBSCRIBE_TOPIC]
                       [-tb BLE_TIME_BETWEEN_SCANS] [-tf TIME_FORMAT] [-ti TLS_INSECURE]
                       [-tls ENABLE_TLS] [-ts TIME_SYNC [TIME_SYNC ...]] [-u USER]
+                      [-wl ADDRESS [ADDRESS ...]]
                       [-ws ENABLE_WEBSOCKET]
 
 options:
@@ -113,6 +115,8 @@ options:
   -b BLE, --ble BLE     Enable (1) or disable (0) BLE (default: 1)
   -bk ADDRESS [BINDKEY ...], --bindkeys ADDRESS [BINDKEY ...]
                         Device addresses and their bindkeys: ADDR1 KEY1 ADDR2 KEY2
+  -bl ADDRESS [ADDRESS ...], --blacklist ADDRESS [ADDRESS ...]
+                        Addresses of Bluetooth devices to ignore, all other devices are allowed
   -c CONFIG, --config CONFIG
                         Path to the configuration file (default: ~/theengsgw.conf)
   -D DISCOVERY, --discovery DISCOVERY
@@ -170,6 +174,8 @@ options:
                         Seconds after which a discovered device tracker not being received is published as offline/away
                         (default: 120)
   -u USER, --user USER  MQTT username
+  -wl ADDRESS [ADDRESS ...], --whitelist ADDRESS [ADDRESS ...]
+                        Addresses of Bluetooth devices to allow, all other devices are ignored
   -ws ENABLE_WEBSOCKET, --enable_websocket ENABLE_WEBSOCKET
                         Enable (1) or disable (0) WebSocket (default: 0)
 ```
